@@ -10,7 +10,13 @@
 
     <xsl:param name="textId"/>
     <xsl:param name="textDate"/>
-
+    <xsl:variable name="fullTitle">
+        <xsl:value-of select="document('meta.xml')//bibl[@xml:id=$textId]/title[2]"/>
+    </xsl:variable>
+    <xsl:variable name="authSex">
+        <xsl:value-of select="document('meta.xml')//bibl[@xml:id=$textId]/sex"/>      
+    </xsl:variable>
+    
     <xsl:variable name="wordCount">
         <xsl:value-of
             select="
@@ -53,6 +59,8 @@
     <xsl:template match="processing-instruction(xml-model)"/>
 
     <xsl:template match="t:TEI">
+        <xsl:message>
+            <xsl:value-of select="concat($textId,' is ', $fullTitle)"/></xsl:message>       
         <xsl:text>
     </xsl:text>
         <xsl:processing-instruction name="xml-model">
@@ -76,10 +84,10 @@
             <fileDesc>
                 <titleStmt>
                     <title>
-                        <xsl:value-of select="//dc:title[1]"/>
+                        <xsl:value-of select="$fullTitle"/>
                     </title>
                     <author>
-                        <xsl:value-of select="//dc:creator[1]"/>
+                        <xsl:value-of select="document('meta.xml')//bibl[@xml:id=$textId]/author"/>                      
                     </author>
                 </titleStmt>
                 <extent>
@@ -93,7 +101,9 @@
                 </publicationStmt>
                 <sourceDesc>
                     <bibl type="printSource">
-                        <author></author>
+                        <author>
+                            <xsl:value-of select="document('meta.xml')//bibl[@xml:id=$textId]/author"/>
+                        </author>
                         <title><xsl:value-of select="//dc:title"/></title>
                         <date>
                             <xsl:value-of select="$textDate"/>
@@ -107,7 +117,7 @@
                     </bibl>
                 </sourceDesc>
             </fileDesc>
-            <encodingDesc n="eltec-0">
+            <encodingDesc n="eltec-1">
                 <p/>
             </encodingDesc>
             <profileDesc>
@@ -116,7 +126,7 @@
                 </langUsage>
                 <textDesc>
                     <!-- a corriger -->
-                    <e:authorGender xmlns="http://distantreading.net/eltec/ns" key="U"/>
+                    <e:authorGender xmlns="http://distantreading.net/eltec/ns" key="{$authSex}"/>
                     <e:size xmlns="http://distantreading.net/eltec/ns" key="{$size}"/>
                     <e:canonicity xmlns="http://distantreading.net/eltec/ns" key="unspecified"/>
                     <e:timeSlot xmlns="http://distantreading.net/eltec/ns" key="{$timeSlot}"/>
@@ -142,11 +152,11 @@
     
     <!-- things we copy -->
 
-    <xsl:template match="t:body/t:div[not(@n)]">
+    <!--<xsl:template match="t:body/t:div[not(@n)]">
         <xsl:comment>Untyped div found...</xsl:comment>
         <xsl:apply-templates/>
     </xsl:template>
-
+-->
     <xsl:template match="t:div[starts-with(@n, 'Page')]">
         <div xmlns="http://www.tei-c.org/ns/1.0" type="titlepage">
             <xsl:apply-templates/>
@@ -164,10 +174,10 @@
     <xsl:template match="t:div[starts-with(@n, 'PRÉFACE')]/t:p[1]"/>
 
     <xsl:template match="t:div[starts-with(@n, 'CHAPITRE') or starts-with(@n, 'Chapitre')]">
-   <!--     <xsl:message>Found a chapter</xsl:message>
- -->       <div xmlns="http://www.tei-c.org/ns/1.0" type="chapter">
-       <xsl:if test="not(t:head)">
-           <head>
+  <!-- <xsl:message>Found a chapter</xsl:message>
+  -->    <div xmlns="http://www.tei-c.org/ns/1.0" type="chapter">
+     <xsl:if test="not(t:head)">
+           <head>        
                 <xsl:value-of select="t:p[1]"/>
             </head>
         </xsl:if>
@@ -175,20 +185,35 @@
         </div>
     </xsl:template>
     <xsl:template match="t:div[starts-with(@n, 'Chapitre')]/t:p[1]"/>
-    <xsl:template match="t:div[starts-with(@n, 'CHAPITRE')]/t:p[1]"/>
+     <xsl:template match="t:div[starts-with(@n, 'CHAPITRE')]/t:p[1]"/>
 
+<!-- things we detag -->
+    
 <xsl:template match="t:div[not(@rend='toc')]">
     <xsl:apply-templates/>
 </xsl:template>
     <xsl:template match="t:head/t:ref">
         <xsl:apply-templates/>
     </xsl:template>
-    
-    <xsl:template match="t:emph">
-        <hi xmlns="http://www.tei-c.org/ns/1.0">
-            <xsl:apply-templates/>
-        </hi>
+ 
+    <xsl:template match="t:hi[@rend='sup']">
+        <xsl:apply-templates/>
     </xsl:template>
+    
+    <xsl:template match="t:hi/t:hi">
+        <xsl:apply-templates/>
+    </xsl:template>
+    
+    <xsl:template match="t:seg[matches(normalize-space(.), '[A-Z]')]">
+        <xsl:apply-templates/>        
+    </xsl:template>
+    
+    <!-- things we retag -->
+    
+    <xsl:template match="t:p[t:seg[matches(normalize-space(.), '[A-Z][A-Z ]+')]]" priority="99">
+        <head><xsl:value-of select="." /></head>        
+    </xsl:template>
+     
 
     <xsl:template match="t:seg">
         <xsl:if test="string-length(normalize-space(.)) gt 0 ">
@@ -198,13 +223,12 @@
         </xsl:if>
     </xsl:template>
 
-<xsl:template match="t:hi[@rend='sup']">
-    <xsl:apply-templates/>
-</xsl:template>
-    
-    <xsl:template match="t:hi/t:hi">
-        <xsl:apply-templates/>
+    <xsl:template match="t:emph">
+        <hi xmlns="http://www.tei-c.org/ns/1.0">
+            <xsl:apply-templates/>
+        </hi>
     </xsl:template>
+    
     
     <xsl:template match="t:graphic">
         <gap unit="graphic" xmlns="http://www.tei-c.org/ns/1.0"/>
