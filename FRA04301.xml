@@ -13,6 +13,8 @@
       <extent>
         <!--an upper estimate: includes paratext -->
         <measure unit="words">168514</measure>
+        <!-- page count from Gallica-->
+        <measure unit="pages">564</measure>
       </extent>
       <publicationStmt>
         <p>à fournir</p>
@@ -21,16 +23,14 @@
         <bibl type="printSource">
           <author>Achard, Amédée (1814-1875)</author>
           <title>Belle-Rose</title>
+          <publisher>Calmann-Levy</publisher>
           <date>1847</date>
+          <ref target="ark:/12148/bpt6k203192c"/>
         </bibl>
         <bibl type="digitalSource">
           <publisher>Bibebook</publisher>
           <ref target="http://www.bibebook.com/ebook/libre/amedee_achard-belle-rose.epub"
             >http://www.bibebook.com/ebook/libre/amedee_achard-belle-rose.epub</ref>
-       <!--   <p> Ont contribué à cette édition : </p>
-          <p>Gabriel Cabos </p>
-          <p>Fontes : David Rakowski's Manfred Klein Dan Sayers Justus Erich Walbaum - Khunrath</p>
-        -->  
         </bibl>
       </sourceDesc>
     </fileDesc>
@@ -53,20 +53,22 @@
     </revisionDesc>
   </teiHeader>
   <text>
-    <front> <div type="titlepage">
-      <p> Amédée Achard </p>
-      
-      
-      <p> Belle-Rose </p>
-      <gap unit="graphic"/>
-      <p>Un texte du domaine public.</p>
-      <p>Une édition libre.</p>
-    </div></front>
+    <front>
+      <div type="titlepage">
+        <p>Belle-Rose</p>
+        <p>par</p>
+        <p>Amédée Achard </p>
+
+        <p>Calmann-Lévy Éditeurs</p>
+        <p> 3, rue Auber Paris </p>
+      </div>
+    </front>
     <body>
+
+
       <div type="chapter">
-     
-        <head> Chapitre   1
-        </head>
+
+        <head> Chapitre   1 </head>
         <head> LE FILS DU FAUCONNIER </head>
         <p>Il y avait, vers l’an 1663, à quelques centaines de pas de Saint-Omer, une maisonnette
           assez bien bâtie, dont la porte s’ouvrait sur le grand chemin de Paris. Une haie vive
@@ -392,8 +394,8 @@
           fit rouler un objet brillant tombé sur le sable. C’était un médaillon en or guilloché.</p>
         <p>– Voyez, mon père, dit l’enfant ; l’étranger l’aura sans doute perdu.</p>
         <p>– Garde-le, mon fils ; c’est peut-être la Providence qui te l’envoie.</p>
-
       </div>
+
       <div type="chapter">
         <head> Chapitre   2 </head>
 
@@ -14165,6 +14167,7 @@
         <p>– Ce n’est rien, reprit le soldat d’une voix profonde ; je viens de tuer un serpent.</p>
 
       </div>
-         </body>
+
+    </body>
   </text>
 </TEI>

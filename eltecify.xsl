@@ -49,9 +49,7 @@
         <xsl:when test="t:TEI/t:teiHeader/t:metadata/dc:source">
             <xsl:value-of select="//dc:source"/>
         </xsl:when>
-        <xsl:otherwise>
-            "#unknownSource"
-        </xsl:otherwise>
+        <xsl:otherwise><xsl:text>#unknownSource</xsl:text></xsl:otherwise>
     </xsl:choose>
 </xsl:variable>
     <!-- replace schema pi -->
@@ -146,7 +144,7 @@
     <xsl:template match="t:div[starts-with(@n, 'À propos')]" priority="99"/>
     <xsl:template match="t:div[contains(@n, 'LICENSE')]" priority="99"/>
     <xsl:template match="t:div[starts-with(@n, 'Fin')]" priority="99"/>
-    <xsl:template match="t:p[string-length(normalize-space(.)) le 3]"/>
+    <xsl:template match="t:p[string-length(normalize-space(.)) le 1]"/>
     <xsl:template match="t:head/@type"/>
     
     
