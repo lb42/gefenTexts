@@ -1,0 +1,22 @@
+FRA04301;Belle-Rose - Achard, Amedee.xml;Belle-Rose;1847;Achard, Amédée;AmÃ©dÃ©e;Achard;1814;1875;M;22137477;bibebook;done
+FRA04401;Feu, Le - Barbusse, Henri.xml;Le Feu;1916;Barbusse, Henri;Henri;Barbusse;1873;1935;M;68925116;bibebook;done
+FRA04501;Colette Baudoche - Barres, Maurice.xml;Colette Baudoche;1909;Barrès, Maurice;Maurice;BarrÃ¨s;1862;1923;M;66463260;eblg;done
+FRA04601;ble qui leve, Le - Bazin, Rene.xml;Le blé qui leve;1907;Bazin, René;RenÃ©;Bazin;1853;1932;M;24597541;bibebook;done
+FRA04701;Laurence Albani - Bourget, Paul.xml;Laurence Albani;1919;Bourget, Paul;Paul;Bourget;1852;1935;M;29530799;"eblg;wikisource";
+FRA04801;casseurs de bois, Les - Corday, Michel.xml;Les casseurs de bois;1910;Corday, Michel;Michel;Corday;1869;1937;M;9861444;gut;
+FRA04901;Reine Margot - Tome I, La - Dumas, Alexandre Pere.xml;Reine Margot;1845;Dumas, Alexandre [pere];Alexandre;Dumas;1802;1870;M;51688902;atramenta;
+FRA05001;Nach Paris! Roman - Dumur, Louis.xml;Nach Paris! Roman;1919;Dumur, Louis;Louis;Dumur;1863;1933;M;66487522;gut;
+FRA05101;Autre vue, L' - Eekhoud, Georges.xml;L'autre vue;1904;Eekhoud, Georges;Georges;Eekhoud;1854;1927;M;19677089;bibebook;
+FRA05201;petite comtesse, La - Feuillet, Octave.xml;La petite comtesse;1857;Feuillet, Octave;Octave;Feuillet;1821;1890;M;68928998;bibebook;
+FRA05301;Docteur Omega (Aventures fantastiques de trois Francais dans la Planete Mars), Le - Galopin, Arnould.xml;Le Docteur Omega;1906;Galopin, Arnould;Arnould;Galopin;1865;1934;M;66487522;bibebook;
+already in ELTeC-fra;seconde mere, La - Greville, Henry.xml;La seconde mere;1901;Greville, Henry;Henry;Greville;1842;1902;F;49258322;bibebook;done
+FRA05401;Madeleine - Kock, Paul de.xml;Madeleine;1850;Kock, Paul de;Paul de;Kock;1793;1871;M;100183137;gut;
+FRA05501;effrayante aventure, L' - Lermina, Jules.xml; L'effrayante aventure,;1910;Lermina, Jules;Jules;Lermina;1839;1915;M;49244018;bibebook;
+FRA05601;meurtre d'une ame, Le - Lesueur, Daniel.xml;Le meurtre d'une ame;1902;Lesueur, Daniel;Daniel;Lesueur;1854;1921;F;39520913;gut;
+FRA05602;Chacune son Reve - Lesueur, Daniel.xml;Chacune son Reve;1910;Lesueur, Daniel;Daniel;Lesueur;1854;1921;F;39520913;gut;
+FRA05701;belle Gabrielle -- Tome 3, La - Maquet, Auguste.xml;belle Gabrielle -- Tome 3, La 3 vols;1854;Maquet, Auguste;Auguste;Maquet;1813;1888;M;62618234;gut;done
+FRA05801;Louise et Barnavaux - Mille, Pierre.xml;Louise et Barnavaux;1912;Mille, Pierre;Pierre;Mille;1864;1941;M;100905302;gallica;
+FRA05901;Terres lorraines - Moselly, Emile.xml;Terres lorraines;1907;Moselly, Emile;Emile;Moselly;1870;1918;M;19681833;bibebook;
+FRA06001;Nuits chaudes du Cap francais, Les - Rebell, Hugues.xml;Nuits chaudes du Cap francais, Les;1902;Rebell, Hugues;Hugues;Rebell;1867;1905;M;9852444;bibebook;
+FRA06101;Mademoiselle de la Seigliere, Volume 1 - Sandeau, Jules.xml;Mademoiselle de la Seigliere, Volume 1-2;1848;Sandeau, Jules;Jules;Sandeau;1811;1883;M;56616138;gut;
+FRA06201;Archambaud de Comborn - Viel-Castel, Horace de.xml;Archambaud de Comborn;1845;Viel-Castel, Horace de;Horace de;Viel-Castel;1802;1864;M;69051610;Gallica: footnotes;footnotes

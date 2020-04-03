@@ -85,6 +85,9 @@
                         <xsl:value-of select="$fullTitle"/>
                     </title>
                     <author>
+                        <xsl:attribute name="ref">
+                            <xsl:value-of select="document('meta.xml')//bibl[@xml:id=$textId]/author/@ref"/>
+                        </xsl:attribute>
                         <xsl:value-of select="document('meta.xml')//bibl[@xml:id=$textId]/author"/>                      
                     </author>
                 </titleStmt>
@@ -126,7 +129,7 @@
                     <!-- a corriger -->
                     <e:authorGender xmlns="http://distantreading.net/eltec/ns" key="{$authSex}"/>
                     <e:size xmlns="http://distantreading.net/eltec/ns" key="{$size}"/>
-                    <e:canonicity xmlns="http://distantreading.net/eltec/ns" key="unspecified"/>
+                    <e:reprintCount xmlns="http://distantreading.net/eltec/ns" key="unspecified"/>
                     <e:timeSlot xmlns="http://distantreading.net/eltec/ns" key="{$timeSlot}"/>
                 </textDesc>
             </profileDesc>

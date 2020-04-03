@@ -1,0 +1,16 @@
+#xmlify data from metadata.txt and write conversion script
+open OUT, '>meta.xml' || die "cant open meta.xml";
+print OUT "\<listBibl>";
+while(<>) {
+($id,$file,$title,$date,$author,$n1,$n2,$y1,$y2,$sex,$viaf,$format,$n)
+= split /;/;
+unless ($n =~ /done/) { 
+print OUT "\<bibl xml:id\=\"$id\"\>";
+print OUT  "\<title type='file'\>$file</title>
+      <title>$title : edition ELTeC</title>
+      <author ref='viaf:$viaf'>$author ($y1-$y2)</author>
+      <sex>$sex</sex>
+      </bibl>\n";
+print "saxon -o:$id\_$n2.xml \"Orig/$file\" eltecify.xsl textId=$id textDate=$date\n";}
+}
+print OUT "\</listBibl>"
