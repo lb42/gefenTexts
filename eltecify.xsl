@@ -143,11 +143,11 @@
     <!-- all lb, all @rend -->
     <xsl:template match="t:lb"/>
     <xsl:template match="@rend"/>
-    <xsl:template match="t:div[matches(@rend, 'pgheader')]"/>
+    <xsl:template match="t:div[matches(@rend, 'pgheader')]" priority="99"/>
     <xsl:template match="t:div[starts-with(@n, 'À propos')]" priority="99"/>
     <xsl:template match="t:div[contains(@n, 'LICENSE')]" priority="99"/>
     <xsl:template match="t:div[starts-with(@n, 'Fin')]" priority="99"/>
-    <xsl:template match="t:p[string-length(normalize-space(.)) le 1]"/>
+    <xsl:template match="t:p[string-length(normalize-space(.)) le 1]" priority="99"/>
     <xsl:template match="t:head/@type"/>
     
     
@@ -158,13 +158,13 @@
         <xsl:apply-templates/>
     </xsl:template>
 -->
-    <xsl:template match="t:div[starts-with(@n, 'Page')]">
+    <xsl:template match="t:div[starts-with(@n, 'Page')]" priority="2">
         <div xmlns="http://www.tei-c.org/ns/1.0" type="titlepage">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
 
-    <xsl:template match="t:div[starts-with(@n, 'PRÉFACE')]">
+    <xsl:template match="t:div[starts-with(@n, 'PRÉFACE')]"  priority="2">>
         <div xmlns="http://www.tei-c.org/ns/1.0" type="liminal">
             <head>
                 <xsl:apply-templates select="t:p[1]"/>
@@ -174,7 +174,7 @@
     </xsl:template>
     <xsl:template match="t:div[starts-with(@n, 'PRÉFACE')]/t:p[1]"/>
 
-    <xsl:template match="t:div[starts-with(@n, 'CHAPITRE') or starts-with(@n, 'Chapitre')]">
+    <xsl:template match="t:div[starts-with(@n, 'CHAPITRE') or starts-with(@n, 'Chapitre')]"  priority="2">
   <!-- <xsl:message>Found a chapter</xsl:message>
   -->    <div xmlns="http://www.tei-c.org/ns/1.0" type="chapter">
      <xsl:if test="not(t:head)">
@@ -240,29 +240,58 @@
         <xsl:apply-templates/>
     </l>
 </xsl:template>
+    
+    <!-- notes -->
+    
+    <xsl:template match="t:p[t:ref]" priority="3">
+        <note>
+            <xsl:attribute name="xml:id">
+                <xsl:value-of select="concat($textId,'_N',substring-before(substring-after(t:ref[1],'['),']'))"/>
+            </xsl:attribute>
+<xsl:apply-templates/>
+        </note>
+    </xsl:template>
+    <xsl:template match="t:p/t:ref" priority="10"/>
 
+<xsl:template match="t:p//t:ref">
+    <ref>
+        <xsl:attribute name="target">
+            <xsl:value-of select="concat('#',$textId,'_N',substring-before(substring-after(.,'['),']'))"/>
+        </xsl:attribute>
+    </ref>
+</xsl:template>
 <!-- special cases -->
     
-    <xsl:template match="t:p[. eq '††']">
-        <milestone xmlns="http://www.tei-c.org/ns/1.0" unit="subchapter"/>
+   <!-- <xsl:template match="t:p[t:hi[1] and not(matches(text()[1], '[a-z]+'))]">
+        <l><xsl:value-of select="t:hi"/></l>
+    </xsl:template>-->
+    
+    <xsl:template match="t:p[t:emph[1] and not(matches(text()[1], '[a-zA-Z]+'))]">
+        <l><xsl:value-of select="t:emph"/></l>
+    </xsl:template>
+    
+    <xsl:template match="t:p[not(matches(., '[a-z]+'))]" priority="2">
+  <!--      eq '††']">
+  -->      <milestone xmlns="http://www.tei-c.org/ns/1.0" unit="subchapter"/>
     </xsl:template>
 
-    <!-- gutenberg specific -->
 
-    <!--<xsl:template match="t:div[matches(@n, '^[IVX]+$')]">
+
+    <!-- gutenberg specific -->
+    
+    <xsl:template match="t:div[matches(@n, '^[IVX]+$')]" priority="10">
         <div xmlns="http://www.tei-c.org/ns/1.0" type="chapter">
             <xsl:apply-templates/>
         </div>
     </xsl:template>
 
-    <xsl:template match="t:head/@type"/>
-   
+  
    <xsl:template match="t:div[@type='section']">
         <div xmlns="http://www.tei-c.org/ns/1.0" type="chapter">
            <xsl:apply-templates/>
         </div> 
     </xsl:template>
-    -->
+    
    
 <!-- copy everything else -->
     
